@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-public class Calculator {	JFrame frame = new JFrame();
+import Operatii.Op;
+import DataModel.Polinom;
+public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
     final int s=10;
 
@@ -19,6 +19,8 @@ public class Calculator {	JFrame frame = new JFrame();
     JButton mulB = new JButton("Inmultire");
     JButton derB = new JButton("Derivare");
     JButton intB = new JButton("Integrare");
+    JTextField p1Text = new JTextField(20);
+    JTextField p2Text = new JTextField(20);
 
     public Calculator(){
         frame.setSize(290,360);
@@ -37,8 +39,6 @@ public class Calculator {	JFrame frame = new JFrame();
         p1.setBounds(s, 50, 80, 25);
         panel1.add(p1);
 
-
-        JTextField p1Text = new JTextField(20);
         p1Text.setBounds(100, 50, 165, 25);
         panel1.add(p1Text);
 
@@ -47,8 +47,6 @@ public class Calculator {	JFrame frame = new JFrame();
         p2.setBounds(10, 80, 100, 25);
         panel1.add(p2);
 
-
-        JTextField p2Text = new JTextField(20);
         p2Text.setBounds(100, 80, 165, 25);
         panel1.add(p2Text);
 
@@ -66,7 +64,7 @@ public class Calculator {	JFrame frame = new JFrame();
         //operatia de adunare
         addB .setBounds(s, 140, wb, 25);
         addB.setAlignmentX(addB.CENTER_ALIGNMENT);
-        //addB.addActionListener(this);
+        addB.addActionListener(this);
         addB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b1= new Color(133	,200,	240);
         addB.setBackground(b1);
@@ -77,7 +75,7 @@ public class Calculator {	JFrame frame = new JFrame();
         difB.setAlignmentX( difB.CENTER_ALIGNMENT);
         difB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         difB.setBackground(b1);
-     //   difB.addActionListener((ActionListener) this);
+        difB.addActionListener((ActionListener) this);
         panel1.add( difB);
 
 
@@ -88,7 +86,7 @@ public class Calculator {	JFrame frame = new JFrame();
 
         Color b2= new Color(	157,	211,	243);
         divB.setBackground(b2);
-    //    divB.addActionListener((ActionListener) this);
+        divB.addActionListener((ActionListener) this);
         panel1.add( divB);
 
 
@@ -97,7 +95,7 @@ public class Calculator {	JFrame frame = new JFrame();
         mulB.setAlignmentX(mulB.CENTER_ALIGNMENT);
         mulB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         mulB.setBackground(b2);
-       // mulB.addActionListener((ActionListener) this);
+        mulB.addActionListener((ActionListener) this);
         panel1.add(mulB);
 
         //buton->Derivare
@@ -106,7 +104,7 @@ public class Calculator {	JFrame frame = new JFrame();
         derB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b3= new Color(		193	,227,	247);
         derB.setBackground(b3);
-       // derB.addActionListener(this);
+        derB.addActionListener(this);
         panel1.add(derB);
 
         //buton ->Integrare
@@ -114,7 +112,7 @@ public class Calculator {	JFrame frame = new JFrame();
         intB.setAlignmentX(intB.CENTER_ALIGNMENT);
         intB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         intB.setBackground(b3);
-     //   intB.addActionListener(this);
+        intB.addActionListener(this);
         panel1.add(intB);
 
 
@@ -124,18 +122,36 @@ public class Calculator {	JFrame frame = new JFrame();
     public void actionPerformed(ActionEvent e) {
         // System.out.println("Button clicked");
         if (e.getSource() == addB) {
-            frame.dispose();
-
+           String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom add=new Polinom(s1,s2);
+           add.Parse(s1);
         }
         if (e.getSource() == difB) {
-            frame.dispose();
-
+            String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom dif=new Polinom(s1,s2);
         }
         if (e.getSource() == divB) {
-            frame.dispose();
+            String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom div=new Polinom(s1,s2);
         }
         if (e.getSource() == mulB) {
-            frame.dispose();
+            String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom mul=new Polinom(s1,s2);
+            System.out.println(mul.toString());
+        }
+        if (e.getSource() == derB) {
+            String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom der=new Polinom(s1,s2);
+        }
+        if (e.getSource() == intB) {
+            String s1 =p1Text.getText();
+            String s2 =p2Text.getText();
+            Polinom inter=new Polinom(s1,s2);
         }
     }
 }
