@@ -9,7 +9,6 @@ import DataModel.Polinom;
 public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
     final int s=10;
-
     final int wb= 255;
 
     JPanel panel1 = new JPanel();
@@ -21,6 +20,8 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
     JButton intB = new JButton("Integrare");
     JTextField p1Text = new JTextField(20);
     JTextField p2Text = new JTextField(20);
+
+    JTextField rText = new JTextField(20);
 
     public Calculator(){
         frame.setSize(290,360);
@@ -55,8 +56,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
         r.setBounds(s, 110, 80, 25);
         panel1.add(r);
 
-
-        JTextField rText = new JTextField(20);
         rText.setBounds(100, 110, 165, 25);
         panel1.add(rText);
 
@@ -114,44 +113,34 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
         intB.setBackground(b3);
         intB.addActionListener(this);
         panel1.add(intB);
-
-
         panel1.setVisible(true);
         frame.setVisible(true);
     }
     public void actionPerformed(ActionEvent e) {
+        String s1 =p1Text.getText();
+        String s2 =p2Text.getText();
+        Polinom p1=new Polinom(s1);
+        Polinom p2=new Polinom(s2);
+        Op operatie=new Op(p1,p2);
         // System.out.println("Button clicked");
         if (e.getSource() == addB) {
-           String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom add=new Polinom(s1,s2);
-           add.Parse(s1);
+            rText.setText( operatie.Adunare());
         }
         if (e.getSource() == difB) {
-            String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom dif=new Polinom(s1,s2);
+            rText.setText( operatie.Scadere());
         }
         if (e.getSource() == divB) {
-            String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom div=new Polinom(s1,s2);
+
         }
         if (e.getSource() == mulB) {
-            String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom mul=new Polinom(s1,s2);
-            System.out.println(mul.toString());
+
         }
         if (e.getSource() == derB) {
-            String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom der=new Polinom(s1,s2);
+
+
         }
         if (e.getSource() == intB) {
-            String s1 =p1Text.getText();
-            String s2 =p2Text.getText();
-            Polinom inter=new Polinom(s1,s2);
+
         }
     }
 }
