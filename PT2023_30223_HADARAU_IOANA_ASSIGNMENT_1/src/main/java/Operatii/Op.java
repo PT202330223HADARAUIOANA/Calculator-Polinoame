@@ -2,6 +2,8 @@ package Operatii;
 import DataModel.Polinom;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class Op {
     Polinom polinom1=new Polinom();
@@ -18,36 +20,45 @@ public class Op {
     public String Adunare(){
         HashMap<Integer,Float> rez=this.polinom1.hash;
         //pun primul polinom in rezultat
-
         for( Integer gp: polinom2.hash.keySet()) //grad polinom2
         {
-                int fleg=0;
-                for(Integer gr: rez.keySet()) //grad polinom rezultat
+            int fleg=0;
+            for(Integer gr: rez.keySet()) //grad polinom rezultat
+            {
+                if(gr.equals(gp))
                 {
-                    if(gp==gr)
-                    {
-                        rez.put(gr, polinom2.hash.get(gp)+ rez.get(gr));
-                        fleg=1;
-                    }
+                        rez.put(gr,polinom2.hash.get(gp)+rez.get(gr));
+                    fleg=1;
                 }
-                //daca nu s-a gasit acelasi grad
-                if(fleg==0)
-                {
-                    rez.put(gp,polinom2.hash.get(gp));
-                }
+            }
+            //daca nu s-a gasit acelasi grad
+            if(fleg==0)
+            {
+                rez.put(gp,polinom2.hash.get(gp));
+            }
         }
+
         System.out.println("rezulta:");
         for( Integer gr: rez.keySet())
         {
-            System.out.println( rez.get(gr)+"x^"+gr);
+            if( rez.get(gr) == 0.0)
+            {
+                System.out.println( "brr");
+            }else {
+                System.out.println( rez.get(gr)+"x^"+gr);
+            }
         }
         //google-it
         StringBuilder sb = new StringBuilder();
         for (Integer key : rez.keySet()) {
-            if( rez.get(key)>0)
+            if( rez.get(key)==0.0)
+            {
+                sb.append("");
+            } else if(rez.get(key)>0 )
             {
                 sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-            }else {
+            }
+            else {
                 sb.append(rez.get(key)).append("x^").append(key).append("\n");
             }
         }
@@ -83,10 +94,14 @@ public class Op {
 
         StringBuilder sb = new StringBuilder();
         for (Integer key : rez.keySet()) {
-            if( rez.get(key)>0)
+            if( rez.get(key)==0.0)
+            {
+                sb.append("");
+            } else if(rez.get(key)>0 )
             {
                 sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-            }else {
+            }
+            else {
                 sb.append(rez.get(key)).append("x^").append(key).append("\n");
             }
         }
