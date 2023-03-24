@@ -46,6 +46,15 @@ public class Op {
         for (Integer key : rez.keySet()) {
             if (rez.get(key) == 0.0) {
                 sb.append("");
+            } else if (key == 0 ) {
+                if( rez.get(key)<0)
+                {
+                    sb.append("-").append(rez.get(key));
+                }
+               else
+                {
+                    sb.append(rez.get(key));
+                }
             } else if (rez.get(key) > 0) {
                 sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
             } else {
@@ -54,96 +63,96 @@ public class Op {
         }
         return sb.toString();
     }
+        public String Scadere () {
+            HashMap<Integer, Float> rez = this.polinom1.hash;
+            //pun primul polinom in rezultat
 
-    public String Scadere() {
-        HashMap<Integer, Float> rez = this.polinom1.hash;
-        //pun primul polinom in rezultat
-
-        for (Integer gp : polinom2.hash.keySet()) //grad polinom2
-        {
-            int fleg = 0;
-            for (Integer gr : rez.keySet()) //grad polinom rezultat
+            for (Integer gp : polinom2.hash.keySet()) //grad polinom2
             {
-                if (gp == gr) {
-                    rez.put(gr, rez.get(gr) - polinom2.hash.get(gp));
-                    fleg = 1;
+                int fleg = 0;
+                for (Integer gr : rez.keySet()) //grad polinom rezultat
+                {
+                    if (gp == gr) {
+                        rez.put(gr, rez.get(gr) - polinom2.hash.get(gp));
+                        fleg = 1;
+                    }
+                }
+                //daca nu s-a gasit acelasi grad
+                if (fleg == 0) {
+                    rez.put(gp, -1 * polinom2.hash.get(gp));
                 }
             }
-            //daca nu s-a gasit acelasi grad
-            if (fleg == 0) {
-                rez.put(gp, -1 * polinom2.hash.get(gp));
+            System.out.println("rezulta:");
+            for (Integer gr : rez.keySet()) {
+                System.out.println(rez.get(gr) + "x^" + gr);
             }
-        }
-        System.out.println("rezulta:");
-        for (Integer gr : rez.keySet()) {
-            System.out.println(rez.get(gr) + "x^" + gr);
+
+            StringBuilder sb = new StringBuilder();
+            for (Integer key : rez.keySet()) {
+                if (rez.get(key) == 0.0) {
+                    sb.append("");
+                } else if (rez.get(key) > 0) {
+                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
+                } else {
+                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
+                }
+            }
+            return sb.toString();
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (Integer key : rez.keySet()) {
-            if (rez.get(key) == 0.0) {
-                sb.append("");
-            } else if (rez.get(key) > 0) {
-                sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-            } else {
-                sb.append(rez.get(key)).append("x^").append(key).append("\n");
-            }
-        }
-        return sb.toString();
-    }
+        public String Derivare () {
+            HashMap<Integer, Float> rez = new HashMap<Integer, Float>(1, 2);
+            //pun primul polinom in rezultat
+            System.out.println("--------derivare:+++++++++++++++++++++++");
 
-    public String Derivare() {
-        HashMap<Integer, Float> rez = new HashMap<Integer, Float>(1,2);
-        //pun primul polinom in rezultat
-        System.out.println("--------derivare:+++++++++++++++++++++++");
+            for (Integer gp : this.polinom1.hash.keySet()) //grad polinom
+            {
+                if (gp > 0) {
+                    int gnou = gp - 1;
+                    float cnou = (float) (this.polinom1.hash.get(gp) * gp);
+                    rez.put(gnou, cnou);
+                    System.out.println("nou: " + cnou + "x^" + gnou);
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            for (Integer key : rez.keySet()) {
+                if (rez.get(key) == 0.0) {
+                    sb.append("");
+                } else if (rez.get(key) > 0) {
+                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
+                } else {
+                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
+                }
+            }
+            return sb.toString();
+        }
 
-        for (Integer gp : this.polinom1.hash.keySet()) //grad polinom
-        {
-            if (gp > 0) {
-                int gnou=gp-1;
-                float cnou= (float)(this.polinom1.hash.get(gp)* gp);
-                rez.put(gnou,cnou);
-                System.out.println("nou: " + cnou + "x^" + gnou );
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-        for (Integer key : rez.keySet()) {
-            if (rez.get(key) == 0.0) {
-                sb.append("");
-            } else if (rez.get(key) > 0) {
-                sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-            } else {
-                sb.append(rez.get(key)).append("x^").append(key).append("\n");
-            }
-        }
-        return sb.toString();
-    }
+        public String Integrare () {
+            HashMap<Integer, Float> rez = new HashMap<Integer, Float>(1, 2);
+            //pun primul polinom in rezultat
+            System.out.println("--------integrare:*******************");
 
-    public String Integrare() {
-        HashMap<Integer, Float> rez = new HashMap<Integer, Float>(1,2);
-        //pun primul polinom in rezultat
-        System.out.println("--------integrare:*******************");
+            for (Integer gp : this.polinom1.hash.keySet()) //grad polinom
+            {
+                if (gp > 0) {
+                    int gnou = gp + 1;
+                    float cnou = (float) (this.polinom1.hash.get(gp) * 1 / gp);
+                    rez.put(gnou, cnou);
+                    System.out.println("nou: " + cnou + "x^" + gnou);
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            for (Integer key : rez.keySet()) {
+                if (rez.get(key) == 0.0) {
+                    sb.append("");
+                } else if (rez.get(key) > 0) {
+                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
+                } else {
+                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
+                }
+            }
+            return sb.toString();
+        }
 
-        for (Integer gp : this.polinom1.hash.keySet()) //grad polinom
-        {
-            if (gp > 0) {
-                int gnou=gp+1;
-                float cnou= (float)(this.polinom1.hash.get(gp)*1/ gp);
-                rez.put(gnou,cnou);
-                System.out.println("nou: " + cnou + "x^" + gnou );
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-        for (Integer key : rez.keySet()) {
-            if (rez.get(key) == 0.0) {
-                sb.append("");
-            } else if (rez.get(key) > 0) {
-                sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-            } else {
-                sb.append(rez.get(key)).append("x^").append(key).append("\n");
-            }
-        }
-        return sb.toString();
-    }
 }
 

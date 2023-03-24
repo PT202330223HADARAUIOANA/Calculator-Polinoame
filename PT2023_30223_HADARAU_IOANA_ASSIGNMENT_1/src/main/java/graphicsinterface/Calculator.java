@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Operatii.Op;
 import DataModel.Polinom;
-public class Calculator implements ActionListener {	JFrame frame = new JFrame();
+public class Calculator implements ActionListener {
+    JFrame frame = new JFrame();
 
     final int s=10;
     final int wb= 255;
