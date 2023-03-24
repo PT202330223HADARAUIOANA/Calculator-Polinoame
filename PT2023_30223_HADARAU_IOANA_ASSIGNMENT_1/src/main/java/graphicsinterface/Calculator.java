@@ -62,7 +62,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //operatia de adunare
         addB .setBounds(s, 140, wb, 25);
-        addB.setAlignmentX(addB.CENTER_ALIGNMENT);
         addB.addActionListener(this);
         addB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b1= new Color(133	,200,	240);
@@ -71,7 +70,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //dif
         difB .setBounds(s, 170, wb, 25);
-        difB.setAlignmentX( difB.CENTER_ALIGNMENT);
         difB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         difB.setBackground(b1);
         difB.addActionListener((ActionListener) this);
@@ -80,7 +78,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //boton-> impartire
         divB .setBounds(s, 200, wb, 25);
-        divB.setAlignmentX( divB.CENTER_ALIGNMENT);
         divB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
 
         Color b2= new Color(	157,	211,	243);
@@ -91,7 +88,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //buton _>inmultire
         mulB .setBounds(s,230, wb, 25);
-        mulB.setAlignmentX(mulB.CENTER_ALIGNMENT);
         mulB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         mulB.setBackground(b2);
         mulB.addActionListener((ActionListener) this);
@@ -99,7 +95,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //buton->Derivare
         derB.setBounds(s,260, wb, 25);
-        derB.setAlignmentX(derB.CENTER_ALIGNMENT);
         derB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b3= new Color(		193	,227,	247);
         derB.setBackground(b3);
@@ -108,7 +103,6 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
 
         //buton ->Integrare
         intB .setBounds(s,290, wb, 25);
-        intB.setAlignmentX(intB.CENTER_ALIGNMENT);
         intB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         intB.setBackground(b3);
         intB.addActionListener(this);
@@ -129,18 +123,17 @@ public class Calculator implements ActionListener {	JFrame frame = new JFrame();
         if (e.getSource() == difB) {
             rText.setText( operatie.Scadere());
         }
-        if (e.getSource() == divB) {
+        /*if (e.getSource() == divB) {
 
         }
         if (e.getSource() == mulB) {
 
-        }
+        }*/
         if (e.getSource() == derB) {
-
-
+            rText.setText( operatie.Derivare());
         }
         if (e.getSource() == intB) {
-
+            rText.setText( operatie.Integrare());
         }
     }
 }

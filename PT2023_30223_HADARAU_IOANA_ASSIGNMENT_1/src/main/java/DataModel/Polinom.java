@@ -59,10 +59,8 @@ public class Polinom {
             Matcher matcher_grad = pattern_grad.matcher(txt);
             if (matcher_grad.find()) {
                 grad = matcher_grad.group();
-                //   System.out.println(grad);
                 String val_grad = grad.substring(1) + "";
                 gradul = Integer.parseInt(val_grad);
-                //    System.out.println("gaux=>"+gradul);
             }
             map.put(gradul,coeficient);
         }
