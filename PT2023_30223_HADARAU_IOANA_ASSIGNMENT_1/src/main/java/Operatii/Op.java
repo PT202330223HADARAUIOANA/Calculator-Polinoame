@@ -42,23 +42,39 @@ public class Op {
             }
         }
         //google-it
+        int gmic=0;
         StringBuilder sb = new StringBuilder();
         for (Integer key : rez.keySet()) {
-            if (rez.get(key) == 0.0) {
+            if (rez.get(key) == 0.0) { //0
                 sb.append("");
-            } else if (key == 0 ) {
-                if( rez.get(key)<0)
-                {
+            } else if (key == 0) { //grad )
+                gmic=1;
+                if (rez.get(key) < 0) {
                     sb.append("-").append(rez.get(key));
-                }
-               else
-                {
+                } else {
                     sb.append(rez.get(key));
                 }
-            } else if (rez.get(key) > 0) {
-                sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
+            }else if(key==1){
+                if (rez.get(key) < 0) {
+                    sb.append("-").append(rez.get(key)).append("x").append("\n");
+                }else  if( rez.get(key) >0 && gmic==1){
+                    sb.append("+").append(rez.get(key)).append("x").append("\n");
+                }else{
+                    sb.append(rez.get(key)).append("x").append("\n");
+                }
+                gmic=1;
+               }else if (rez.get(key) > 0) {
+                if(gmic==1)
+                {
+                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
+
+                }else{
+                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
+                    gmic=1;
+                }
             } else {
                 sb.append(rez.get(key)).append("x^").append(key).append("\n");
+                gmic=1;
             }
         }
         return sb.toString();
