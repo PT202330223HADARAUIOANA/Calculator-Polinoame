@@ -1,16 +1,14 @@
 package org.example;
 import DataModel.Polinom;
 import Operatii.Op;
+import jdk.jfr.StackTrace;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest extends TestCase
 {
-    Polinom p1=new Polinom("3x^3+2x^2+x+2");
+    Polinom p1=new Polinom("5x^3+2x^2+x+2");
     Polinom p2=new Polinom("3x^3+2x^2+x+2");
     Op operatie=new Op(p1,p2);
    public AppTest( String testName )
@@ -29,12 +27,28 @@ public class AppTest extends TestCase
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
-    {
-
-        String reztext="4.0+2.0x+4.0x^2+6.0x^3";
-        Polinom rezultat_adunare1=new Polinom(reztext);
-        assertEquals(operatie.Adunare(),rezultat_adunare1);
-        //assertTrue( true );
+    public void testApp_Adunare()    {
+        String rezultat_adunare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+         String ad=operatie.Adunare();
+        assertEquals(ad,rezultat_adunare);
     }
+    public void testApp_Scadere()
+    {
+        String rezultat_scadere="+2.0x^3\n";
+        String sub=operatie.Scadere();
+        assertEquals(sub,rezultat_scadere);
+
+    }
+    /*public void testApp_Derivare()
+    {
+        String rezultat_derivare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+        String ad=operatie.Derivare();
+        assertEquals(ad,rezultat_derivare);
+    }
+    public void testApp_Integrare()
+    {
+        String rezultat_integrare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+        String ad=operatie.Integrare();
+        assertEquals(ad,rezultat_integrare);
+    }*/
 }

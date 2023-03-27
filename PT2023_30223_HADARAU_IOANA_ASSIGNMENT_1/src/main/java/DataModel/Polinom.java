@@ -95,17 +95,22 @@ public class Polinom {
         }
         if (matcher_fara_putere.find() ) {
             String sir = matcher_fara_putere.group();
-            System.out.println("fara putere>>>" + sir);
-            if (sir.charAt(0) == '+') {
-                System.out.println("++++");
+            //System.out.println("fara putere>>>" + sir);
+            if( sir.equals("+x+") || sir.equals("x+") || sir.equals("x") ) {
+                //System.out.println("++++bun");
+                coeficient = Float.parseFloat("1");
+            }else if(sir.equals("-x")) {
+                coeficient = (-1)*Float.parseFloat("1");
+            } else if (sir.charAt(0) == '+') {
+                //System.out.println("++++pr");
                 String valoare = sir.substring(1,sir.length()-2) + "";//sterg x+
                 coeficient = Float.parseFloat(valoare);
             } else if (sir.charAt(0) == '-') {
-                System.out.println("------");
+               // System.out.println("------");
                 String valoare = sir.substring(1,sir.length()-2) + "";
                 coeficient = (-1) * Float.parseFloat(valoare);
             }else {
-                System.out.println("??????");
+               // System.out.println("??????");
                 String valoare = sir.substring(0,sir.length()-2) +"";
                 coeficient = Float.parseFloat(valoare);
             }
@@ -114,17 +119,23 @@ public class Polinom {
         }
         if (matcher_fara_putere2.find() ) {
             String sir = matcher_fara_putere2.group();
-            System.out.println("fara putere2222222222>>>" + sir);
-            if (sir.charAt(0) == '+') {
-                System.out.println("++++");
+          //  System.out.println("fara putere2222222222>>>" + sir);
+
+            if( sir.equals("+x") || sir.equals("x")) {
+               // System.out.println("++++bun");
+                coeficient = Float.parseFloat("1");
+            }else if(sir.equals("-x")) {
+                coeficient = (-1)*Float.parseFloat("1");
+            } else if (sir.charAt(0) == '+') {
+                //System.out.println("++++");
                 String valoare = sir.substring(1,sir.length()-1) + ""; //sterg x-ul
                 coeficient = Float.parseFloat(valoare);
             } else if (sir.charAt(0) == '-') {
-                System.out.println("------");
+               // System.out.println("------");
                 String valoare = sir.substring(1,sir.length()-1) + "";
                 coeficient = (-1) * Float.parseFloat(valoare);
             }else {
-                System.out.println("??????");
+              //  System.out.println("??????");
                 String valoare = sir.substring(0,sir.length()-1) +"";
                 coeficient = Float.parseFloat(valoare);
             }
@@ -133,7 +144,7 @@ public class Polinom {
         }
         if (pattern_ok == 0 || matcher_sintaxa_gresita.find()) {
             ErrPattern err=new ErrPattern();
-            System.out.println("errr-------------------------------------------");
+           // System.out.println("errr-------------------------------------------");
         } else{
             this.hash = map;
         }

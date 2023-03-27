@@ -33,11 +33,9 @@ public class Op {
             }
         }
 
-        System.out.println("rezulta:");
+       // System.out.println("rezulta:");
         for (Integer gr : rez.keySet()) {
-            if (rez.get(gr) == 0.0) {
-                System.out.println("brr");
-            } else {
+            if (rez.get(gr) != 0.0) {
                 System.out.println(rez.get(gr) + "x^" + gr);
             }
         }
