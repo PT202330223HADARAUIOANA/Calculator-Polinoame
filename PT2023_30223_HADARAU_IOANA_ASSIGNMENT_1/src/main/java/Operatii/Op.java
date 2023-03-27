@@ -14,26 +14,9 @@ public class Op {
     }
 
     //public HashMap<Integer, Float> Adunare(){
-    public String Adunare() {
-        HashMap<Integer, Float> rez = this.polinom1.hash;
-        //pun primul polinom in rezultat
-        for (Integer gp : polinom2.hash.keySet()) //grad polinom2
-        {
-            int fleg = 0;
-            for (Integer gr : rez.keySet()) //grad polinom rezultat
-            {
-                if (gr.equals(gp)) {
-                    rez.put(gr, polinom2.hash.get(gp) + rez.get(gr));
-                    fleg = 1;
-                }
-            }
-            //daca nu s-a gasit acelasi grad
-            if (fleg == 0) {
-                rez.put(gp, polinom2.hash.get(gp));
-            }
-        }
-
-       // System.out.println("rezulta:");
+    public String Afisare( HashMap<Integer, Float> rez)
+    {
+        //rezultatul
         for (Integer gr : rez.keySet()) {
             if (rez.get(gr) != 0.0) {
                 System.out.println(rez.get(gr) + "x^" + gr);
@@ -61,7 +44,7 @@ public class Op {
                     sb.append(rez.get(key)).append("x").append("\n");
                 }
                 gmic=1;
-               }else if (rez.get(key) > 0) {
+            }else if (rez.get(key) > 0) {
                 if(gmic==1)
                 {
                     sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
@@ -76,6 +59,28 @@ public class Op {
             }
         }
         return sb.toString();
+    }
+    public String Adunare() {
+        HashMap<Integer, Float> rez = this.polinom1.hash;
+        //pun primul polinom in rezultat
+        for (Integer gp : polinom2.hash.keySet()) //grad polinom2
+        {
+            int fleg = 0;
+            for (Integer gr : rez.keySet()) //grad polinom rezultat
+            {
+                if (gr.equals(gp)) {
+                    rez.put(gr, polinom2.hash.get(gp) + rez.get(gr));
+                    fleg = 1;
+                }
+            }
+            //daca nu s-a gasit acelasi grad
+            if (fleg == 0) {
+                rez.put(gp, polinom2.hash.get(gp));
+            }
+        }
+
+        String rezultat=Afisare(rez);
+        return rezultat;
     }
         public String Scadere () {
             HashMap<Integer, Float> rez = this.polinom1.hash;
@@ -96,22 +101,8 @@ public class Op {
                     rez.put(gp, -1 * polinom2.hash.get(gp));
                 }
             }
-            System.out.println("rezulta:");
-            for (Integer gr : rez.keySet()) {
-                System.out.println(rez.get(gr) + "x^" + gr);
-            }
-
-            StringBuilder sb = new StringBuilder();
-            for (Integer key : rez.keySet()) {
-                if (rez.get(key) == 0.0) {
-                    sb.append("");
-                } else if (rez.get(key) > 0) {
-                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-                } else {
-                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
-                }
-            }
-            return sb.toString();
+            String rezultat=Afisare(rez);
+            return rezultat;
         }
 
         public String Derivare () {
@@ -138,7 +129,8 @@ public class Op {
                     sb.append(rez.get(key)).append("x^").append(key).append("\n");
                 }
             }
-            return sb.toString();
+            String rezultat=Afisare(rez);
+            return rezultat;
         }
 
         public String Integrare () {
@@ -155,17 +147,8 @@ public class Op {
                     System.out.println("nou: " + cnou + "x^" + gnou);
                 }
             }
-            StringBuilder sb = new StringBuilder();
-            for (Integer key : rez.keySet()) {
-                if (rez.get(key) == 0.0) {
-                    sb.append("");
-                } else if (rez.get(key) > 0) {
-                    sb.append("+").append(rez.get(key)).append("x^").append(key).append("\n");
-                } else {
-                    sb.append(rez.get(key)).append("x^").append(key).append("\n");
-                }
-            }
-            return sb.toString();
+            String rezultat=Afisare(rez);
+            return rezultat;
         }
 
 }
