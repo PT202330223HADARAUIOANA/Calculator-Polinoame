@@ -38,10 +38,7 @@ public class Polinom {
         String grad = "";
         int pattern_ok = 0;
             while (matcher_monom.find()) {
-                //nu stie daca nu apare x-ul
-                //daca grad la x =0 sa stie ca numar normal
                 String txt = matcher_monom.group();
-                System.out.println(txt);
                 Pattern pattern_coef = Pattern.compile("[+-]*\\d*");
                 Matcher matcher_coef = pattern_coef.matcher(txt);
 
@@ -67,7 +64,7 @@ public class Polinom {
                     } else {
                         coeficient = Float.parseFloat("1");
                     }
-                    System.out.println("coeficientul este:::::" + coeficient);
+
                 }
                 Pattern pattern_grad = Pattern.compile("\\^+\\d{1,}");
                 Matcher matcher_grad = pattern_grad.matcher(txt);
@@ -82,11 +79,10 @@ public class Polinom {
 
         if (matcher_gol.find()) {
             String cgol = matcher_gol.group();
-            System.out.println("coef gol>>>" + cgol);
             if (cgol.charAt(0) == '+') {
                 String valoare = cgol.substring(1) + "";
                 coeficient = Float.parseFloat(valoare);
-            } else if (coef.charAt(0) == '-') {
+            } else if (cgol.charAt(0) == '-') {
                 String valoare = cgol.substring(1) + "";
                 coeficient = (-1) * Float.parseFloat(valoare);
             }
@@ -95,22 +91,20 @@ public class Polinom {
         }
         if (matcher_fara_putere.find() ) {
             String sir = matcher_fara_putere.group();
-            //System.out.println("fara putere>>>" + sir);
-            if( sir.equals("+x+") || sir.equals("x+") || sir.equals("x") ) {
-                //System.out.println("++++bun");
+            String str_sir=sir.substring(0,sir.length()-1) + "";
+            if(str_sir.equals("x") ||str_sir.equals("+x") )
+            {
                 coeficient = Float.parseFloat("1");
-            }else if(sir.equals("-x")) {
+            }else if( str_sir.equals("-x")){
                 coeficient = (-1)*Float.parseFloat("1");
             } else if (sir.charAt(0) == '+') {
-                //System.out.println("++++pr");
                 String valoare = sir.substring(1,sir.length()-2) + "";//sterg x+
+                System.out.println("pls"+valoare);
                 coeficient = Float.parseFloat(valoare);
             } else if (sir.charAt(0) == '-') {
-               // System.out.println("------");
                 String valoare = sir.substring(1,sir.length()-2) + "";
                 coeficient = (-1) * Float.parseFloat(valoare);
             }else {
-               // System.out.println("??????");
                 String valoare = sir.substring(0,sir.length()-2) +"";
                 coeficient = Float.parseFloat(valoare);
             }
@@ -119,23 +113,18 @@ public class Polinom {
         }
         if (matcher_fara_putere2.find() ) {
             String sir = matcher_fara_putere2.group();
-          //  System.out.println("fara putere2222222222>>>" + sir);
 
             if( sir.equals("+x") || sir.equals("x")) {
-               // System.out.println("++++bun");
                 coeficient = Float.parseFloat("1");
             }else if(sir.equals("-x")) {
                 coeficient = (-1)*Float.parseFloat("1");
             } else if (sir.charAt(0) == '+') {
-                //System.out.println("++++");
                 String valoare = sir.substring(1,sir.length()-1) + ""; //sterg x-ul
                 coeficient = Float.parseFloat(valoare);
             } else if (sir.charAt(0) == '-') {
-               // System.out.println("------");
                 String valoare = sir.substring(1,sir.length()-1) + "";
                 coeficient = (-1) * Float.parseFloat(valoare);
             }else {
-              //  System.out.println("??????");
                 String valoare = sir.substring(0,sir.length()-1) +"";
                 coeficient = Float.parseFloat(valoare);
             }
@@ -144,7 +133,6 @@ public class Polinom {
         }
         if (pattern_ok == 0 || matcher_sintaxa_gresita.find()) {
             ErrPattern err=new ErrPattern();
-           // System.out.println("errr-------------------------------------------");
         } else{
             this.hash = map;
         }

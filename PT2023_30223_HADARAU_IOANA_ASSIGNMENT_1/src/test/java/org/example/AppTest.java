@@ -28,27 +28,27 @@ public class AppTest extends TestCase
      * Rigourous Test :-)
      */
     public void testApp_Adunare()    {
-        String rezultat_adunare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+        String rezultat_adunare="4.0\n+2.0x\n+4.0x^2\n+8.0x^3\n";
          String ad=operatie.Adunare();
         assertEquals(ad,rezultat_adunare);
     }
     public void testApp_Scadere()
     {
-        String rezultat_scadere="+2.0x^3\n";
+        String rezultat_scadere="2.0x^3\n";
         String sub=operatie.Scadere();
         assertEquals(sub,rezultat_scadere);
 
     }
-    /*public void testApp_Derivare()
+    public void testApp_Derivare()
     {
-        String rezultat_derivare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+        String rezultat_derivare="1.0\n+15.0x^2\n+4.0x\n";
         String ad=operatie.Derivare();
         assertEquals(ad,rezultat_derivare);
     }
     public void testApp_Integrare()
     {
-        String rezultat_integrare="4.0+2.0x\n+4.0x^2\n+8.0x^3\n";
+        String rezultat_integrare="x^2\n+1.66x^4\n+x^3\n";
         String ad=operatie.Integrare();
         assertEquals(ad,rezultat_integrare);
-    }*/
+    }
 }

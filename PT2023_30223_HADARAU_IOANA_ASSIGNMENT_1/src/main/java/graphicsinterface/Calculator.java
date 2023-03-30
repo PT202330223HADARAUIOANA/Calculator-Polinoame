@@ -8,14 +8,15 @@ import Operatii.Op;
 import DataModel.Polinom;
 public class Calculator implements ActionListener {
     JFrame frame = new JFrame();
-
-    final int s=10;
+    final int xs=10;
+    final int dist=30;
+    int y=20;
+    int h=25;
     final int wb= 255;
 
     JPanel panel1 = new JPanel();
     JButton addB = new JButton("Adunare");
     JButton difB = new JButton("Diferenta");
-    JButton divB = new JButton("Impartire");
     JButton mulB = new JButton("Inmultire");
     JButton derB = new JButton("Derivare");
     JButton intB = new JButton("Integrare");
@@ -28,41 +29,41 @@ public class Calculator implements ActionListener {
         frame.setSize(290,360);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel1);
-
         panel1.setBackground(new Color(	238	,248,253));
         panel1.setLayout(null);
 
         JLabel titlulabel = new JLabel("Polinoame");
-        titlulabel.setBounds(s, 20, 250, 25);
+        titlulabel.setBounds(xs, y, 250, h);
         panel1.add(titlulabel);
 
         //Polinomul 1
         JLabel p1 = new JLabel("Polinomul 1 ");
-        p1.setBounds(s, 50, 80, 25);
+        y=y+dist;
+        p1.setBounds(xs, y, 80, h);
         panel1.add(p1);
-
-        p1Text.setBounds(100, 50, 165, 25);
+        p1Text.setBounds(100, y, 165, 25);
         panel1.add(p1Text);
 
         //Polinomul 2
         JLabel p2 = new JLabel("Polinomul 2");
-        p2.setBounds(10, 80, 100, 25);
+        y=y+dist;
+        p2.setBounds(xs, y, 100, h);
         panel1.add(p2);
-
-        p2Text.setBounds(100, 80, 165, 25);
+        p2Text.setBounds(100, y, 165, h);
         panel1.add(p2Text);
 
         //rezultat
         JLabel r = new JLabel("Rezultatul");
-        r.setBounds(s, 110, 80, 25);
+        y=y+dist;
+        r.setBounds(xs, y, 80, h);
         panel1.add(r);
-
-        rText.setBounds(100, 110, 165, 25);
+        rText.setBounds(100, y, 165, h);
         panel1.add(rText);
 
 
         //operatia de adunare
-        addB .setBounds(s, 140, wb, 25);
+        y=y+dist+10;
+        addB .setBounds(xs, y, wb, h);
         addB.addActionListener(this);
         addB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b1= new Color(133	,200,	240);
@@ -70,32 +71,25 @@ public class Calculator implements ActionListener {
         panel1.add(addB);
 
         //dif
-        difB .setBounds(s, 170, wb, 25);
+        y=y+dist;
+        difB .setBounds(xs, y, wb, h);
         difB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         difB.setBackground(b1);
         difB.addActionListener((ActionListener) this);
         panel1.add( difB);
 
-
-        //boton-> impartire
-        divB .setBounds(s, 200, wb, 25);
-        divB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
-
-        Color b2= new Color(	157,	211,	243);
-        divB.setBackground(b2);
-        divB.addActionListener((ActionListener) this);
-        panel1.add( divB);
-
-
         //buton _>inmultire
-        mulB .setBounds(s,230, wb, 25);
+        y=y+dist;
+        mulB .setBounds(xs,y, wb, h);
         mulB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
+        Color b2= new Color(	157,	211,	243);
         mulB.setBackground(b2);
         mulB.addActionListener((ActionListener) this);
         panel1.add(mulB);
 
         //buton->Derivare
-        derB.setBounds(s,260, wb, 25);
+        y=y+dist;
+        derB.setBounds(xs,y, wb, h);
         derB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         Color b3= new Color(		193	,227,	247);
         derB.setBackground(b3);
@@ -103,7 +97,8 @@ public class Calculator implements ActionListener {
         panel1.add(derB);
 
         //buton ->Integrare
-        intB .setBounds(s,290, wb, 25);
+        y=y+dist;
+        intB .setBounds(xs,y, wb, h);
         intB.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
         intB.setBackground(b3);
         intB.addActionListener(this);
@@ -117,19 +112,15 @@ public class Calculator implements ActionListener {
         Polinom p1=new Polinom(s1);
         Polinom p2=new Polinom(s2);
         Op operatie=new Op(p1,p2);
-        // System.out.println("Button clicked");
         if (e.getSource() == addB) {
             rText.setText( operatie.Adunare());
         }
         if (e.getSource() == difB) {
             rText.setText( operatie.Scadere());
         }
-        /*if (e.getSource() == divB) {
-
-        }
         if (e.getSource() == mulB) {
-
-        }*/
+            rText.setText( operatie.Inmultire());
+        }
         if (e.getSource() == derB) {
             rText.setText( operatie.Derivare());
         }
