@@ -2,7 +2,6 @@
 
         package DataModel;
 
-        import graphicsinterface.Calculator;
         import graphicsinterface.ErrPattern;
 
         import java.util.HashMap;
