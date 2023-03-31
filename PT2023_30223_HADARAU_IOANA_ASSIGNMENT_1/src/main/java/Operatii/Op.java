@@ -163,7 +163,7 @@ public class Op {
                     //gradul nou
                     int gnou = gp + 1;
                     //coeficientul nou
-                    float cnou = (float) (this.polinom1.hash.get(gp) / gp);
+                    float cnou = (float) (this.polinom1.hash.get(gp) / gnou);
                     String cnou_str = Float.toString(cnou);
                     Pattern pattern_decimale = Pattern.compile("\\d+\\.\\d{2}");
                     Matcher matcher_decimale = pattern_decimale.matcher(cnou_str);
